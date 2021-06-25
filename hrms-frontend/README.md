@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Human Resources Management
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img src ="https://res.cloudinary.com/du9huaxi3/image/upload/v1624643782/HrmsUml_xkn2eh.jpg">
 
 ## Available Scripts
 
