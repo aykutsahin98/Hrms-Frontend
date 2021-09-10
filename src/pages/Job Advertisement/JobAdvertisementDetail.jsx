@@ -4,7 +4,7 @@ import { Table, Button, Icon, Segment } from "semantic-ui-react";
 import JobAdvertisementService from "../../services/JobAdvertisementService";
 
 export default function JobAdvertisementDetail() {
-  let {id} = useParams();
+  let { id } = useParams();
   const [JobAdvertisements, setJobAdverts] = useState([]);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export default function JobAdvertisementDetail() {
   }, []);
 
   return (
-    <div className="card">
+    <div className="card" style={{marginTop:100}}>
       {JobAdvertisements.map((jobAdvert) => (
         <div>
           <Segment color="green" textAlign="center">

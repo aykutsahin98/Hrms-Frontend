@@ -10,7 +10,9 @@ import {
   Icon,
 } from "semantic-ui-react";
 
+
 export default function HomePage() {
+
   return (
     <div style={{ backgroundColor: "whitesmoke" }}>
       <div
@@ -20,7 +22,7 @@ export default function HomePage() {
           paddingBlockEnd: 200,
         }}
       >
-        <Container text>
+        <Container text style={{marginTop:200}}>
           <Header
             color="brown"
             as="h1"

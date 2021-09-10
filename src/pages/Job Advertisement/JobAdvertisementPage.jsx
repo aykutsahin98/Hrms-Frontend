@@ -8,7 +8,6 @@ export default function JobAdvertisementPage() {
   return (
     <div>
       <div style={{ margin: "20px" }}>
-        <Head></Head>
         <Grid>
           <Grid.Row>
             <Grid.Column width={4}>

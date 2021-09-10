@@ -5,10 +5,10 @@ import { Form } from "semantic-ui-react";
 export default function Head() {
   return (
     <div style={{ marginTop: "-10px", marginBottom:"10px"}} >
-      <Header size="huge" block textAlign="right">
-        <Container >
-          <Form >
-            <Form.Group widths="60">
+      <Header size="huge" block textAlign="right" >
+        <Container textAlign="center">
+        <Form>
+            <Form.Group >
               <Form.Input
                 placeholder="Pozisyon veya şirket ara"
                 icon="search"

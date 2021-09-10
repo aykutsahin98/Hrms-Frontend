@@ -1,55 +1,43 @@
+
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { Button, Menu, Dropdown } from "semantic-ui-react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { Button, Menu } from "semantic-ui-react";
 import { Icon } from "semantic-ui-react";
+import SingedIn from "./SingedIn";
+import SingedOut from "./SingedOut";
 
-
-const options = [
-  {
-    key: "login",
-    icon: "sign in",
-    text: "Giriş Yap",
-    value: "login",
-    as: Link,
-    to: "/employerloginpage",
-  },
-  {
-    key: "register",
-    icon: "signup",
-    text: "Üye Ol",
-    value: "register",
-    as: Link,
-    to: "/employerregisterpage",
-  },
-];
 export default function Navi() {
+  //const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const {authItem} = useSelector(state => state.auth)
+
+ /* function handleSignOut() {
+    setIsAuthenticated(false);
+  }
+  function handleSignIn() {
+    setIsAuthenticated(true);
+    
+  }*/
   return (
     <div>
-      <Menu size="large">
-        <Menu.Item>
+      <Menu inverted fixed="top">
+        <Menu.Item style={{ textAlign: "center", fontSize: 17 }}>
           <Icon size="large" circular color="teal" name="users" />
-          <menu
-            style={{ textAlign: "center", marginRight: 25, fontSize: 20 }}
-            type="context"
-          >
-            <b>HRMS.Net</b>
-          </menu>
+          <b>HRMS.Net</b>
         </Menu.Item>
 
         <Menu.Item
           as={Link}
           to="/"
           style={{ textAlign: "center", fontSize: 17 }}
-          name="homepage"
         >
           <b>Anasayfa</b>
         </Menu.Item>
 
         <Menu.Item
-          as={NavLink}
+          as={Link}
           to="/jobadvertspage"
           style={{ textAlign: "center", fontSize: 17 }}
-          name="workplace"
         >
           <b>İş İlanları</b>
           <Icon style={{ marginLeft: 5 }} name="search" size="small" />
@@ -64,25 +52,11 @@ export default function Navi() {
           <b>İlan Onaylama</b>
         </Menu.Item>
 
-        <Menu.Item position="right" as={NavLink} to="/jobseekerregisterpage">
-          <Button color="purple">Üye Ol</Button>
-        </Menu.Item>
-
-        <Menu.Item as={NavLink} to="/jobseekerloginpage">
-          <Button color="purple">Üye Girişi</Button>
-        </Menu.Item>
-
-        <Menu.Item>
-          <Button.Group color="blue">
-            <Button>İş Veren</Button>
-            <Dropdown
-              className="button icon"
-              floating
-              options={options}
-              trigger={<></>}
-            />
-          </Button.Group>
-        </Menu.Item>
+        <Menu.Menu position="right" style={{ margin: '0.5em' }}>
+        {authItem[0].loggedIn && authItem[0].user.userType===2 &&  <Button style={{marginTop:20,marginBottom:20}} inverted color='red' as={Link} to={"/jobadvertadd"}>İlan Ekle</Button>}
+        {authItem[0].loggedIn && authItem[0].user.userType===1}
+        {authItem[0].loggedIn?<SingedIn/>:<SingedOut/>}
+        </Menu.Menu>
       </Menu>
     </div>
   );

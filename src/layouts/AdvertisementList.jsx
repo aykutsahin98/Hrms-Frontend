@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Card } from "semantic-ui-react";
+import { toast } from "react-toastify";
+import { Card, Rating } from "semantic-ui-react";
+import FavoriteJobAdvertService from "../services/FavoriteJobAdvertService";
 import JobAdvertisementService from "../services/JobAdvertisementService";
 
 export default function AdvertisementList() {
@@ -13,8 +15,20 @@ export default function AdvertisementList() {
       .then((result) => setJobAdverts(result.data.data));
   }, []);
 
+  let favoriteJobAdvertService = new FavoriteJobAdvertService();
+  const handleAddFavorite = (jobAdvertId) => {
+    favoriteJobAdvertService
+      .addFavorite(1, jobAdvertId)
+      .then((result) => {
+        toast.success("Favorilere eklendi");
+      })
+      .catch((result) => {
+        toast.error("Favorilerde var zaten");
+      });
+    }
+
   return (
-    <div style={{ width: "971px" }}>
+    <div style={{ width: "971px", marginTop:90 }}>
       {JobAdvertisement.map((jobAdvert) => (
         <Card.Group key={jobAdvert.id}>
           <Card fluid color="purple" as={NavLink} to={`/jobadvertsdetail/${jobAdvert.id}`}>
@@ -37,6 +51,12 @@ export default function AdvertisementList() {
                 textAlign="right"
                 content={jobAdvert.creationDate}
               />
+                <Card.Description textAlign="left">
+                        <Rating
+                          icon="star"
+                          onRate={() => handleAddFavorite(jobAdvert.id)}
+                        />
+                      </Card.Description>
             </Card.Content>
           </Card>
         </Card.Group>

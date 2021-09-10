@@ -75,7 +75,7 @@ export default function JobAdvertisementAddPage() {
       };
 
     return (
-        <div className="container">
+        <div className="container" style={{marginTop:120}}>
              <Card fluid  className="cardstyle">
         <Card.Content  header="İş ilanı Ekle" />
         <Card.Content>

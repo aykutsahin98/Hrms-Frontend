@@ -11,7 +11,7 @@ export default function Filter() {
   }, []);
 
   return (
-    <div>
+    <div style={{marginTop:90}}>
       <Segment as="h3">Şehir</Segment>
 
       <Segment.Group>
